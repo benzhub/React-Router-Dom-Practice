@@ -14,7 +14,7 @@ export default function SearchOrder() {
   return (
     <form onSubmit={handleSubmit} className="p-1">
       <input
-        className="p-2"
+        className="w-36 rounded-full px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 sm:focus:w-72 focus:outline-none focus:ring focus:ring-yellow-500 focus:ring-opacity-50 sm:w-64"
         placeholder="Seaerh order #"
         value={query}
         onChange={(e) => {
