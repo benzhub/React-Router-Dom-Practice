@@ -44,7 +44,6 @@ function CreateOrder() {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'loading';
   const formErrors = useActionData();
-  console.log(isSubmitting);
 
   return (
     <div className='px-4 py-6'>
