@@ -12,6 +12,7 @@ import AppLayout from './ui/AppLayout';
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement: <Error />,
     children: [
       { path: '/', element: <Home /> },
       // 我們在載入/menu的時候，我們就同時fetching data
