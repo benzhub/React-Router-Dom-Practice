@@ -12,8 +12,9 @@ export default function SearchOrder() {
     setQuery('');
   }
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="p-1">
       <input
+        className="p-2"
         placeholder="Seaerh order #"
         value={query}
         onChange={(e) => {

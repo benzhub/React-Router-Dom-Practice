@@ -1,5 +1,3 @@
 export default function Username() {
-  return (
-    <div className="text-sm font-semibold">Ben</div>
-  )
+  return <div className="p-1 text-sm font-semibold">Ben</div>;
 }
