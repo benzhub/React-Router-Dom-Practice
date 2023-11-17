@@ -1,4 +1,4 @@
-import { formatCurrency } from "../../utils/helpers";
+import { formatCurrency } from '../../utils/helpers';
 
 // eslint-disable-next-line react/prop-types
 function MenuItem({ pizza }) {
