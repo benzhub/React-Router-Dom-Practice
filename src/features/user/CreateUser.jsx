@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import Button from '../../ui/Button';
+import { updateName } from './userSlice';
+import { useDispatch } from 'react-redux';
 
 function CreateUser() {
   const [username, setUsername] = useState('');
+  const dispatch = useDispatch();
 
   function handleSubmit(e) {
     e.preventDefault();
+    dispatch(updateName(username));
+    setUsername('');
   }
 
   return (
@@ -15,15 +20,15 @@ function CreateUser() {
       </p>
 
       <input
+        className="input mb-8 w-72"
         type="text"
         placeholder="Your full name"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className="input mb-8 w-72"
       />
 
       {username !== '' && (
-        <div>
+        <div onClick={handleSubmit}>
           <Button type="primary" to="/order/new">Start ordering</Button>
         </div>
       )}

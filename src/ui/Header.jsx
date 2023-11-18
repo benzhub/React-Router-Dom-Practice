@@ -9,8 +9,10 @@ export default function Header() {
         Fast React Pizza Co.
       </Link>
 
-      <SearchOrder />
-      <Username />
+      <div className='flex items-center px-4 py-3 gap-4'>
+        <SearchOrder />
+        <Username />
+      </div>
     </header>
   );
 }
