@@ -1,30 +1,23 @@
 import Button from '../../ui/Button';
 import { formatCurrency } from '../../utils/helpers';
 import { useDispatch } from 'react-redux';
-import { addItem, increaseItemQuantity } from '../cart/cartSlice.js';
-import { useSelector } from 'react-redux';
+import { addItem } from '../cart/cartSlice.js';
 
 // eslint-disable-next-line react/prop-types
 function MenuItem({ pizza }) {
   // eslint-disable-next-line react/prop-types
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
-  const cart = useSelector((store) => store.cart.cart);
   const dispatch = useDispatch();
 
   function handleAddItemtoCart() {
-    const item = cart.find((item) => item.pizzaId === id);
-    if (item) {
-      dispatch(increaseItemQuantity(id));
-    } else {
-      const newItem = {
-        pizzaId: id,
-        name,
-        quantity: 1,
-        unitPrice,
-        totalPrice: unitPrice,
-      };
-      dispatch(addItem(newItem));
-    }
+    const newItem = {
+      pizzaId: id,
+      name,
+      quantity: 1,
+      unitPrice,
+      totalPrice: unitPrice,
+    };
+    dispatch(addItem(newItem));
   }
 
   return (
