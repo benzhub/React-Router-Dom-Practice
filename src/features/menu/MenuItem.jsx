@@ -1,10 +1,31 @@
 import Button from '../../ui/Button';
 import { formatCurrency } from '../../utils/helpers';
+import { useDispatch } from 'react-redux';
+import { addItem, increaseItemQuantity } from '../cart/cartSlice.js';
+import { useSelector } from 'react-redux';
 
 // eslint-disable-next-line react/prop-types
 function MenuItem({ pizza }) {
-  // eslint-disable-next-line react/prop-types, no-unused-vars
+  // eslint-disable-next-line react/prop-types
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  const cart = useSelector((store) => store.cart.cart);
+  const dispatch = useDispatch();
+
+  function handleAddItemtoCart() {
+    const item = cart.find((item) => item.pizzaId === id);
+    if (item) {
+      dispatch(increaseItemQuantity(id));
+    } else {
+      const newItem = {
+        pizzaId: id,
+        name,
+        quantity: 1,
+        unitPrice,
+        totalPrice: unitPrice,
+      };
+      dispatch(addItem(newItem));
+    }
+  }
 
   return (
     <li className="flex gap-4 py-2">
@@ -16,7 +37,7 @@ function MenuItem({ pizza }) {
       <div className="flex grow flex-col pt-0.5">
         <p className="font-medium">{name}</p>
         <p className="text-sm capitalize italic text-stone-500">
-        {/* eslint-disable-next-line react/prop-types */}
+          {/* eslint-disable-next-line react/prop-types */}
           {ingredients.join(', ')}
         </p>
         <div className="mt-auto flex flex-grow items-center justify-between ">
@@ -27,8 +48,11 @@ function MenuItem({ pizza }) {
               Sold out
             </p>
           )}
-
-          <Button type="small">Add to cart</Button>
+          {!soldOut && (
+            <Button type="small" onClick={handleAddItemtoCart}>
+              Add to cart
+            </Button>
+          )}
         </div>
       </div>
     </li>

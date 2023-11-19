@@ -1,10 +1,17 @@
 import Button from '../../ui/Button';
 import { formatCurrency } from '../../utils/helpers';
+import { useDispatch } from 'react-redux';
+import { deleteItem } from './cartSlice';
 
 // eslint-disable-next-line react/prop-types
 function CartItem({ item }) {
+  const dispatch = useDispatch();
   // eslint-disable-next-line react/prop-types, no-unused-vars
   const { pizzaId, name, quantity, totalPrice } = item;
+
+  function handleDeleteItem(){
+    dispatch(deleteItem(pizzaId));
+  }
 
   return (
     <li className="py-3 sm:flex sm:items-center sm:justify-between">
@@ -13,7 +20,7 @@ function CartItem({ item }) {
       </p>
       <div className="flex items-center justify-between sm:gap-6">
         <p className="text-sm font-bold">{formatCurrency(totalPrice)}</p>
-        <Button type="small">Delete</Button>
+        <Button onClick={handleDeleteItem} type="small">Delete</Button>
       </div>
     </li>
   );
